@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeekPlanFragment"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:weightSum="10">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=" 1"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="11dp"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="주간 운동 계획"
+            android:textSize="29sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.545" />
+
+        <Button
+            android:id="@+id/del"
+            android:background="@drawable/square_shape"
+            android:layout_width="85dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="225dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="101dp"
+            android:layout_marginBottom="11dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF8B3E"
+            android:gravity="center"
+            android:text="삭제"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/save"
+            android:background="@drawable/square_shape"
+            android:layout_width="85dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="11dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF8B3E"
+            android:gravity="center"
+            android:text="저장"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/navigationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_weight="0"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/prevWeekButton"
+            android:background="@drawable/square_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="prev"
+            android:padding="8dp"
+            tools:text="prev" />
+
+        <TextView
+            android:id="@+id/weekLabel"
+            android:background="@drawable/square_shape"
+            android:backgroundTint="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:text="Week of May 25, 2024"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/nextWeekButton"
+            android:background="@drawable/square_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="next"
+            android:padding="8dp"
+            tools:text="next" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="7"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/sundayLayout"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+            <Button
+                android:id="@+id/sundayDate"
+                android:background="@drawable/square_shape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:paddingTop="8dp"
+                />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/sundayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/mondayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/mondayDate"
+                android:background="@drawable/square_shape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                 />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/mondayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tuesdayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:background="@drawable/square_shape"
+                android:id="@+id/tuesdayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                 />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/tuesdayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/wednesdayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/wednesdayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:background="@drawable/square_shape" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/wednesdayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/thursdayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/thursdayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:background="@drawable/square_shape" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/thursdayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fridayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/fridayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:background="@drawable/square_shape"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/fridayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/saturdayLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"
+                android:textSize="16sp" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/saturdayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:background="@drawable/square_shape" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/saturdayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"></ListView>
+</LinearLayout>

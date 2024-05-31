@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/exerciseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Exercise Sets"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:paddingBottom="16dp"
+            android:layout_gravity="center_horizontal" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <LinearLayout
+                android:id="@+id/setListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="Add Exercise"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="@android:color/white" />
+
+            <Button
+                android:id="@+id/completeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="저장"
+                android:backgroundTint="@color/white"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
