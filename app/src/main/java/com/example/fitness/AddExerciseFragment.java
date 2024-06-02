@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -190,15 +191,17 @@ public class AddExerciseFragment extends Fragment implements AddNewSetListener {
         // Get current user
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
         if (account != null) {
-
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String routineId = UUID.randomUUID().toString(); // 고유한 ID 생성
 
             db.collection("users").document(uid).collection("exerciseSets").document(date)
+                    .collection("routines").document(routineId)
                     .set(new HashMap<String, Object>() {{
                         put("exerciseSets", exerciseSets);
                     }})
                     .addOnSuccessListener(aVoid -> Log.d("AddExerciseFragment", "Exercise sets saved successfully"))
                     .addOnFailureListener(e -> Log.w("AddExerciseFragment", "Error saving exercise sets", e));
+
         }
     }
 
