@@ -50,16 +50,9 @@ public class AddEventFragment extends Fragment {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
-            // 현재 날짜 가져오기
-            date = getCurrentDate();
         } else {
             Log.w(TAG, "User is not signed in.");
         }
-    }
-
-    private String getCurrentDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        return sdf.format(new Date());
     }
 
     @Nullable
@@ -67,8 +60,11 @@ public class AddEventFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_event, container, false);
+
+        // Get the current date in yyyy-MM-dd format
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView selectedDateText = view.findViewById(R.id.selectedDate);
-        selectedDateText.setText(day + " " + date);
+        selectedDateText.setText(day + " " + date );
 
         Button prevButton = view.findViewById(R.id.prevButton);
         Button saveEventButton = view.findViewById(R.id.saveEventButton);
@@ -76,15 +72,15 @@ public class AddEventFragment extends Fragment {
         prevButton.setOnClickListener(v -> {
             // Navigate to ViewExerciseFragment
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new ViewPrevExerciseFragment())
+                    .replace(R.id.container, ViewPrevExerciseFragment.newInstance(date))
                     .addToBackStack(null)
                     .commit();
         });
 
         saveEventButton.setOnClickListener(v -> {
-            // Navigate to AddExerciseFragment
+            // Navigate to AddExerciseFragment with the selected date
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new AddExerciseFragment())
+                    .replace(R.id.container, AddExerciseFragment.newInstance(date))
                     .addToBackStack(null)
                     .commit();
         });

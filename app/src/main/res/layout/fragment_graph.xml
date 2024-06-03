@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 이전 주 버튼 -->
+    <Button
+        android:id="@+id/btnPrevWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous Week"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <!-- 다음 주 버튼 -->
+    <Button
+        android:id="@+id/btnNextWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Week"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
+
+    <!-- 날짜와 총무게를 표시할 텍스트뷰 -->
+    <LinearLayout
+        android:id="@+id/layoutDateAndWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPrevWeek"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 날짜 -->
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="18sp" />
+
+        <!-- 총무게 -->
+        <TextView
+            android:id="@+id/textViewWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Weight"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</RelativeLayout>

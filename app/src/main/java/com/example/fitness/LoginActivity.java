@@ -1,13 +1,10 @@
 package com.example.fitness;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,25 +15,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.google.android.gms.common.api.ApiException;
-
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         // Firebase 인증 객체 초기화
         mAuth = FirebaseAuth.getInstance();
@@ -67,10 +56,16 @@ public class LoginActivity extends AppCompatActivity {
         // GoogleSignInClient 초기화
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Google 로그인 버튼 클릭 시 이벤트 처리
-        findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
+        // 구글 로그인 상태를 확인하여 이미 로그인되어 있으면 메인 액티비티로 이동
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish(); // 현재 액티비티 종료
+        } else {
+            // 구글 로그인 버튼 클릭 시 이벤트 처리
+            setContentView(R.layout.activity_login);
+            findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
+        }
     }
-
     // Google 로그인 실행 메소드
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -133,20 +128,18 @@ public class LoginActivity extends AppCompatActivity {
             String name = user.getDisplayName();
             String email = user.getEmail();
 
-
-
             // Create a user map
             Map<String, Object> userMap = new HashMap<>();
             userMap.put("name", name);
             userMap.put("email", email);
 
-
-            // Save user info to Firestore
+            // Save user info to Firestore with merge option
             db.collection("users").document(uid)
-                    .set(userMap)
-                    .addOnSuccessListener(aVoid -> Log.d("LoginActivity", "User information saved successfully"))
-                    .addOnFailureListener(e -> Log.w("LoginActivity", "Error saving user information", e));
+                    .set(userMap, SetOptions.merge())
+                    .addOnSuccessListener(aVoid -> Log.d("LoginActivity",
+                            "User information saved successfully"))
+                    .addOnFailureListener(e -> Log.w("LoginActivity",
+                            "Error saving user information", e));
         }
     }
-
 }

@@ -16,61 +16,6 @@
         android:layout_weight=" 1"
         android:weightSum="10">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="11dp"
-            android:layout_weight="8"
-            android:gravity="center"
-            android:text="주간 운동 계획"
-            android:textSize="29sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.545" />
-
-        <Button
-            android:id="@+id/del"
-            android:background="@drawable/square_shape"
-            android:layout_width="85dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="225dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="101dp"
-            android:layout_marginBottom="11dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF8B3E"
-            android:gravity="center"
-            android:text="삭제"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/save"
-            android:background="@drawable/square_shape"
-            android:layout_width="85dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="11dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF8B3E"
-            android:gravity="center"
-            android:text="저장"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,14 +94,15 @@
                 android:textSize="16sp" />
             <Button
                 android:id="@+id/sundayDate"
-                android:background="@drawable/square_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
-                android:layout_weight="1"
                 android:paddingTop="8dp"
-                />
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"
                 android:id="@+id/sundayList"
@@ -182,15 +128,16 @@
                 android:text="월"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
                 android:id="@+id/mondayDate"
-                android:background="@drawable/square_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                 />
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"
                 android:id="@+id/mondayList"
@@ -215,14 +162,16 @@
                 android:text="화"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
-                android:background="@drawable/square_shape"
                 android:id="@+id/tuesdayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/square_shape" />
                  />
             <LinearLayout
                 android:layout_weight="1"
@@ -249,13 +198,15 @@
                 android:text="수"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
                 android:id="@+id/wednesdayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"
@@ -282,13 +233,15 @@
                 android:text="목"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
                 android:id="@+id/thursdayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"
@@ -314,14 +267,16 @@
                 android:text="금"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
                 android:id="@+id/fridayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                android:background="@drawable/square_shape"/>
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"
                 android:id="@+id/fridayList"
@@ -346,13 +301,15 @@
                 android:text="토"
                 android:textSize="16sp" />
             <Button
-                android:layout_weight="1"
                 android:id="@+id/saturdayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:background="@drawable/square_shape" />
             <LinearLayout
                 android:layout_weight="1"

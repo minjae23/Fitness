@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,10 +26,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.appcompat.app.AlertDialog;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserProfile extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private TextView weightTextView, skeletalMuscleMassTextView, bodyFatPercentageTextView;
+    private TextView benchTextView, squatTextView, deadTextView;
+    private Button weightButton, skeletalMuscleMassButton, bodyFatPercentageButton;
+    private Button benchButton, squatButton, deadButton;
 
     @Nullable
     @Override
@@ -36,6 +46,62 @@ public class UserProfile extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.imageView);
         imageView.setImageResource(R.drawable.profile);
+
+        weightTextView = view.findViewById(R.id.weight);
+        skeletalMuscleMassTextView = view.findViewById(R.id.skeletal_muscle_mass);
+        bodyFatPercentageTextView = view.findViewById(R.id.body_fat_per);
+        benchTextView = view.findViewById(R.id.bench);
+        squatTextView = view.findViewById(R.id.squat);
+        deadTextView = view.findViewById(R.id.dead);
+
+        weightButton = view.findViewById(R.id.button);
+        skeletalMuscleMassButton = view.findViewById(R.id.button2);
+        bodyFatPercentageButton = view.findViewById(R.id.button3);
+        benchButton = view.findViewById(R.id.input_bench);
+        squatButton = view.findViewById(R.id.input_squat);
+        deadButton = view.findViewById(R.id.input_dead);
+
+        weightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(weightTextView, "체중 입력", "체중을 입력하세요:", "weight");
+            }
+        });
+
+        skeletalMuscleMassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(skeletalMuscleMassTextView, "골격근량 입력", "골격근량을 입력하세요:", "skeletalMuscleMass");
+            }
+        });
+
+        bodyFatPercentageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(bodyFatPercentageTextView, "체지방률 입력", "체지방률을 입력하세요:", "bodyFatPercentage");
+            }
+        });
+
+        benchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(benchTextView, "벤치프레스 입력", "벤치프레스를 입력하세요:", "bench");
+            }
+        });
+
+        squatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(squatTextView, "스쿼트 입력", "스쿼트를 입력하세요:", "squat");
+            }
+        });
+
+        deadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog(deadTextView, "데드리프트 입력", "데드리프트를 입력하세요:", "dead");
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -46,34 +112,92 @@ public class UserProfile extends Fragment {
         btnLogoutGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Execute logout using GoogleSignInClient
-                GoogleSignIn.getClient(getActivity(), GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .signOut()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                // AlertDialog.Builder를 사용하여 확인 다이얼로그를 생성합니다.
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("정말 로그아웃 하시겠습니까?")
+                        .setPositiveButton("예", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    // Logout successful
-                                    FirebaseAuth.getInstance().signOut();
-                                    Toast.makeText(getActivity(), "Google logout successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                                    startActivity(intent);
-                                    // Perform additional actions if needed
-                                } else {
-                                    // Logout failed
-                                    Toast.makeText(getActivity(), "Google logout failed", Toast.LENGTH_SHORT).show();
-                                }
+                            public void onClick(DialogInterface dialog, int which) {
+                                // "예"를 선택할 경우 로그아웃을 실행합니다.
+                                GoogleSignIn.getClient(getActivity(), GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                        .signOut()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    FirebaseAuth.getInstance().signOut();
+                                                    Toast.makeText(getActivity(), "Google logout successful", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                                    startActivity(intent);
+                                                } else {
+                                                    Toast.makeText(getActivity(), "Google logout failed", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            }
+                        })
+                        .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // "아니오"를 선택할 경우 아무 작업도 수행하지 않습니다.
                             }
                         });
+                // 다이얼로그를 표시합니다.
+                builder.show();
             }
         });
+
 
         return view;
     }
 
+    private void showInputDialog(final TextView textView, String title, String message, final String field) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(title);
+        builder.setMessage(message);
 
+        final EditText input = new EditText(getContext());
+        builder.setView(input);
 
-    private void loadUserInfo(View view) {
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String userInput = input.getText().toString();
+                textView.setText(userInput);
+
+                // Update Firestore with the new value
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user != null) {
+                    String uid = user.getUid();
+                    Map<String, Object> data = new HashMap<>();
+                    data.put(field, Double.parseDouble(userInput));
+
+                    db.collection("users").document(uid).update(data)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity(), "Data updated", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Data update failed", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
+
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void loadUserInfo(final View view) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String uid = user.getUid();
@@ -89,14 +213,13 @@ public class UserProfile extends Fragment {
                             String email = document.getString("email");
 
                             Double weight = document.getDouble("weight");
-                            Double skeletalMuscleMass = document.getDouble("sket");
-                            Double bodyFatPercentage = document.getDouble("fat");
+                            Double skeletalMuscleMass = document.getDouble("skeletalMuscleMass");
+                            Double bodyFatPercentage = document.getDouble("bodyFatPercentage");
 
                             Double bench = document.getDouble("bench");
                             Double squat = document.getDouble("squat");
                             Double dead = document.getDouble("dead");
 
-                            // Update UI with user information
                             TextView nameTextView = view.findViewById(R.id.nameTextView);
                             TextView emailTextView = view.findViewById(R.id.emailTextView);
                             TextView weightTextView = view.findViewById(R.id.weight);

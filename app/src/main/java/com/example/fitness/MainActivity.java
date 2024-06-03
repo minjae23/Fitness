@@ -17,18 +17,23 @@ public class MainActivity extends AppCompatActivity {
 
     String ID;
     WeekPlanFragment weekPlanFragment;
+    GraphFragment graphFragment;
+    FriendFragment friendFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        weekPlanFragment =new WeekPlanFragment();
+        graphFragment =new GraphFragment();
+        friendFragment =new FriendFragment();
 
         UserProfile userProfileFragment = new UserProfile();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, userProfileFragment);
+        transaction.replace(R.id.container, weekPlanFragment);
         transaction.commit();
 
-        weekPlanFragment =new WeekPlanFragment();
+
 
 
 
@@ -37,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id == R.id.second_tab || id == R.id.third_tab ) {
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                if (id == R.id.third_tab ) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container,friendFragment ).commit();
+                    return true;
+                }
+                if(id == R.id.second_tab){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container,graphFragment ).commit();
                     return true;
                 }
                 if(id == R.id.first_tab){

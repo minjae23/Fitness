@@ -14,16 +14,16 @@
         android:id="@+id/second_tab"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/exercise"
-        android:title="Info"
+        android:icon="@drawable/graph"
+        android:title="Analysis"
         />
 
     <item
         android:id="@+id/third_tab"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/timer"
-        android:title="Timer"
+        android:icon="@drawable/friends"
+        android:title="friends"
         >
     </item>
 
